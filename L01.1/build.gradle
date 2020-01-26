@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+configurations {
+    extraLibs
+}
+
+apply plugin : 'java'
+ext {
+    javaMainClass = 'org.example.l011.Main'
+}
+
+application {
+    mainClassName = 'org.example.l011.Main'
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": javaMainClass
+        )
+    }
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.google.guava:guava:23.6-jre';
+    extraLibs group: 'com.google.guava', name: 'guava', version: '23.6-jre'
+    configurations.compile.extendsFrom(configurations.extraLibs)
+}
+
