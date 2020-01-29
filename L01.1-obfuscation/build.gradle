@@ -50,16 +50,14 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'com.google.guava:guava:23.6-jre';
-    extraLibs group: 'com.google.guava', name: 'guava', version: '23.6-jre'
+    compile group: 'com.google.guava', name: 'guava', version: '28.2-jre'
+    extraLibs group: 'com.google.guava', name: 'guava', version: '28.2-jre'
     configurations.compile.extendsFrom(configurations.extraLibs)
 }
 
-
 task proguard(type: proguard.gradle.ProGuardTask) {
-  //configuration 'proguard.txt'
+  configuration 'proguard.txt'
 
   injars 'build/libs/L01.1-1.0-SNAPSHOT.jar'
-  //outjars 'build/libs/L01.1-1.0-SNAPSHOT.jar'
+  outjars 'build/libs/L01.1-1.0-SNAPSHOT-ob.jar'
 }
-

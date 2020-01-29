@@ -1,5 +1,7 @@
+
 # Include java runtime classes
--libraryjars  <java.home>/lib/rt.jar
+-libraryjars <java.home>/lib/rt.jar
+-libraryjars <java.home>/lib/jce.jar
 
 # Output a source map file
 -printmapping proguard.map
